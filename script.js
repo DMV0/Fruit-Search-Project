@@ -17,13 +17,17 @@ function search(str) {
 }
 
 function searchHandler(e) {
+	clearSuggestions();
+	let input = document.getElementById('fruit').value.toLowerCase()
+	let searchResults = search(input);
+	showSuggestions(searchResults, input);
+}
+
+function clearSuggestions(){
 	while (suggestions.firstChild)
 	{
 		suggestions.removeChild(suggestions.firstChild);
 	}
-	let input = document.getElementById('fruit').value.toLowerCase()
-	let searchResults = search(input);
-	showSuggestions(searchResults, input);
 }
 
 function showSuggestions(results, inputVal) {
@@ -39,10 +43,7 @@ function showSuggestions(results, inputVal) {
 
 function useSuggestion(e) {
 	document.getElementById('fruit').value = e.target.childNodes[0].nodeValue;
-	while (suggestions.firstChild)
-	{
-		suggestions.removeChild(suggestions.firstChild);
-	}
+	clearSuggestions();
 }
 
 function highlightSuggestion(e) {
